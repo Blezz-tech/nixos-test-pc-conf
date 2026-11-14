@@ -1,6 +1,6 @@
-{ pkgs
-, ...
-}: {
+# Оглавление модулей NixOS. Здесь должны быть только импорты: сам конфиг живёт
+# в файлах рядом, по одному на тему.
+{ ... }: {
   imports = [
     ./bluetooth.nix
     ./boot.nix
@@ -12,28 +12,13 @@
     ./networking.nix
     ./nix-ld.nix
     ./nix.nix
+    ./nixpkgs.nix
     ./opentablet.nix
     ./podman.nix
     ./print_and_scan.nix
     ./sound.nix
     ./tty.nix
     ./user.nix
+    ./virtualisation.nix
   ];
-
-  # Эмулятор Android
-  virtualisation.waydroid.enable = true;
-  virtualisation.waydroid.package = pkgs.waydroid-nftables;
-
-  # nixpkgs settings
-  nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.rocmSupport = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # libinput.enable = true;
-
-  # MIME TYPE
-  # xdg.mime.enable = true;
-  # xdg.mime.addedAssociations = {
-  #   "application/drawio" = "drawio.desktop";
-  # };
 }
