@@ -1,4 +1,6 @@
-{
+# Оглавление домашних программ: по файлу на приложение, плюс тематические
+# наборы в packs/.
+{ ... }: {
   imports = [
     ./chromium.nix
     ./common.nix
@@ -10,6 +12,7 @@
     ./neovim.nix
     ./nushell.nix
     ./syncthing.nix
+    ./v2rayn.nix
     ./vscode.nix
 
     ./packs
