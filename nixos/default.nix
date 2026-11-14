@@ -3,7 +3,6 @@
     ./modules
     ./services
     ./programs
-    ./config.nix
     ./hardware-configuration.nix
     ./overlays.nix
     ./packages.nix

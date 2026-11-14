@@ -29,9 +29,4 @@
     enable = true;
     binfmt = true;
   };
-
-  # Системный монитор KDE. Опция своя, объявлена в nixos/config.nix: она вешает
-  # setcap cap_net_raw+ep на бинарь, иначе монитор не видит сетевую статистику
-  # без root. В nixpkgs такой опции нет — не путать с пакетом из plasma6
-  programs.plasma-systemmonitor.enable = true;
 }
