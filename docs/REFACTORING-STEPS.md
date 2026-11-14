@@ -13,7 +13,9 @@
 
 ## Шаги
 
-Прогресс: **01–15** смержены.
+Прогресс: **01–16** смержены.
+
+Осталось 7 PR: шаги дальше идут парами (17–18, 19–20, 21–22, 23–24, 25–26, 27–28, 29–30).
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -33,7 +35,7 @@
 | 14 | refactor: `home/XDG` → `home/xdg` | переименование каталога, убран мёртвый импорт `# ./fcitx5` | остальные каталоги в нижнем регистре; `fcitx5` в дереве нет |
 | 15 | refactor: `packs/default.nix` → `base.nix` | `programs.*` и keepassxc переезжают в отдельный файл | `default.nix` = только список импортов, 10 файлов packs/ были списком импортов с довеском |
 | 16 | refactor: data-файлы v2rayN | из `home/shell/default.nix` → `home/programs/v2rayn.nix` | они про приложение, а не про shell; в `home/programs/` уже по файлу на приложение |
-| 17 | docs: wishlist пакетов | `docs/notes/packages-wishlist.md` | 176 закомментированных пакетов в коде — это не код |
+| 17 | docs: wishlist пакетов | `docs/notes/packages-wishlist.md` | 216 закомментированных пакетов в коде — это не код |
 | 18 | chore: `common.nix` | только реально установленные пакеты, сгруппированные | 108 из 191 строк — комментарии |
 | 19 | chore: `packs`: games, media, messengers | убрать комментарии | 68 из 91 строки в `games.nix` — комментарии |
 | 20 | chore: `packs`: dev, kde, archive, tex, office, browsers, custom | чистка + `nixfmt` вместо устаревшего `nixpkgs-fmt` | то же + мёртвый `myPHP` |
