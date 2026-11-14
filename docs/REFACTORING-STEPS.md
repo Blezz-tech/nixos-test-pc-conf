@@ -13,7 +13,7 @@
 
 ## Шаги
 
-Прогресс: **01–06** смержены.
+Прогресс: **01–07** смержены.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -24,7 +24,7 @@
 | 05 | chore: no-op опции | `permittedInsecurePackages = []`, `programs.kde-pim { enable = false; … }`, `users.packages = []` | это значения по умолчанию — строки только шумят |
 | 06 | chore: неиспользуемые аргументы | `pkgs` в `programs/chromium.nix`, `services/default.nix` | deadnix-ошибки, из-за них линтер не включить. В `i18n.nix` аргумент используется, `services/postgresql.nix` уже в архиве |
 | 07 | refactor: `openssh.nix` по содержимому | → `gnupg.nix` + `mtr.nix`, закомментированный `services.openssh` → `docs/snippets/openssh-server.nix` | файл называется «ssh», а внутри gpg-agent и `mtr`. При этом sshd в конфиге вообще не включён |
-| 08 | refactor: разбить `modules/default.nix` (1) | `boot.nix`, `environment.nix` | 64 строки в одном файле про загрузчик, wayland-переменные и Android-эмулятор |
+| 08 | refactor: разбить `modules/default.nix` (1) | `boot.nix`, `environment.nix`; убран мёртвый пример `specialisation` | 64 строки в одном файле про загрузчик, wayland-переменные и Android-эмулятор |
 | 09 | refactor: разбить `modules/default.nix` (2) | `nixpkgs.nix`, `virtualisation.nix`; `default.nix` становится списком импортов | то же |
 | 10 | refactor: syncthing и psd | `services/syncthing.nix` (только порты) → `modules/networking.nix`; `services/psd.nix` | файл называется syncthing, но `services.syncthing` в нём закомментирован, а живого кода — 2 строки про firewall |
 | 11 | refactor: `programs/default.nix` → `system.nix` | тело файла в `system.nix`, выключенные блоки убраны | `default.nix` должен быть оглавлением, а не свалкой |
