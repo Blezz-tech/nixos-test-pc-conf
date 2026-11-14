@@ -1,6 +1,8 @@
-{
+# Оглавление тематических наборов пакетов home-manager.
+{ ... }: {
   imports = [
     ./archive.nix
+    ./base.nix
     ./browsers.nix
     ./custom.nix
     ./dev.nix
@@ -11,17 +13,4 @@
     ./office.nix
     ./tex.nix
   ];
-
-  programs = {
-    bun.enable = true;
-    java.enable = true;
-    fastfetch.enable = true;
-    freetube.enable = true;
-    pandoc.enable = true;
-    yt-dlp.enable = true;
-    keepassxc = {
-      enable = true;
-      autostart = true;
-    };
-  };
 }
