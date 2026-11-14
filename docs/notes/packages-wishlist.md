@@ -158,3 +158,21 @@ KDE-игры: `pkgs.kdePackages.kolf`, `pkgs.kdePackages.kmahjongg`,
 `pkgs.blezz-pkgs.davinci-resolve`, `pkgs.blezz-pkgs.MURMUR.CLION.v2025_2_2` —
 из своего оверлея `blezz-pkgs`. Оба тяжёлые: DaVinci требует распаковки архивов
 (~3 ГБ), MURMUR собирается из исходников.
+
+## Из старого `TODO.md` — 19 шт.
+
+Этот список жил в `docs/TODO.md` в разделе «Пакеты» и переехал сюда, когда TODO
+стал списком задач.
+
+Приложения: `bilibili`, `qq`, `wechat-uos` (лицензию брать из Arch-репозитория),
+`stirling-pdf`, `media-downloader`, `kdePackages.kate`, `kdePackages.yakuake`,
+`kdePackages.krdc`.
+
+Утилиты: `aha` (ANSI → HTML), `clinfo` (информация об OpenCL), `wayland-utils`,
+`p7zip`, `smassh` (тренажёр печати TUI), `qqwing` (судоку).
+
+Языки: `nim`, `nimlsp`.
+
+САПР (попробовать): `cadzinho`, `librecad`, `kompass3d`.
+
+Отдельно: `eglinfo` — закомментирован в старом TODO как «возможно, не нужен».
