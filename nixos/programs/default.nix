@@ -3,7 +3,6 @@
     ./chromium.nix
     ./firefox.nix
     ./kdeconnect.nix
-    # ./obs-studio.nix
     ./steam.nix
   ];
 
