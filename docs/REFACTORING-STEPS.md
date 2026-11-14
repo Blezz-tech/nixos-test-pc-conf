@@ -13,7 +13,7 @@
 
 ## Шаги
 
-Прогресс: **01–13** смержены.
+Прогресс: **01–14** смержены.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -31,7 +31,7 @@
 | 12 | refactor: `config.nix` → `modules/plasma-systemmonitor.nix` | своя опция `programs.plasma-systemmonitor` убрана, остался `security.wrappers` | опция объявлялась в одном файле, включалась в другом, и её никто не переопределял |
 | 13 | refactor: `systemPackages` | убрать дубль `partitionmanager`, сгруппировать по темам; `home-manager` оставлен с объяснением | `partitionmanager` ставит `programs.partition-manager`; `home-manager` не дубль — HM как модуль NixOS свою CLI не ставит |
 | 14 | refactor: `home/XDG` → `home/xdg` | переименование каталога, убран мёртвый импорт `# ./fcitx5` | остальные каталоги в нижнем регистре; `fcitx5` в дереве нет |
-| 15 | refactor: `packs/default.nix` → `base.nix` | `programs.*` и keepassxc переезжают в отдельный файл | `default.nix` = только список импортов |
+| 15 | refactor: `packs/default.nix` → `base.nix` | `programs.*` и keepassxc переезжают в отдельный файл | `default.nix` = только список импортов, 10 файлов packs/ были списком импортов с довеском |
 | 16 | refactor: data-файлы v2rayN | из `home/shell/default.nix` → `home/programs/packs/base.nix` | они про приложение, а не про shell |
 | 17 | docs: wishlist пакетов | `docs/notes/packages-wishlist.md` | 176 закомментированных пакетов в коде — это не код |
 | 18 | chore: `common.nix` | только реально установленные пакеты, сгруппированные | 108 из 191 строк — комментарии |
