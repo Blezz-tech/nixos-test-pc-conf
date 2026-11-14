@@ -20,7 +20,6 @@
         "lp" # Для печати
         # config.services.kubo.group
       ];
-      packages = [ ];
     };
   };
 }
