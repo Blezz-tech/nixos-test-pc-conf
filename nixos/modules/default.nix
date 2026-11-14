@@ -4,11 +4,12 @@
   imports = [
     ./bluetooth.nix
     ./fonts.nix
+    ./gnupg.nix
     ./i18n.nix
+    ./mtr.nix
     ./networking.nix
     ./nix-ld.nix
     ./nix.nix
-    ./openssh.nix
     ./opentablet.nix
     ./podman.nix
     ./print_and_scan.nix
