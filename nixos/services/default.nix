@@ -1,20 +1,7 @@
-{ pkgs
-, ...
-}: {
+# Оглавление сервисов NixOS. Здесь должны быть только импорты.
+{ ... }: {
   imports = [
     ./fwupd.nix
-    # ./postgresql.nix
-    # ./sunshine.nix
-    ./syncthing.nix
-    # ./tor.nix
-    # ./v2raya.nix
-    # ./weblate.nix
-    # ./whoogle-search.nix
-    # ./zapret.nix
+    ./psd.nix
   ];
-
-  services.psd = {
-    enable = true;
-    resyncTimer = "15m";
-  };
 }

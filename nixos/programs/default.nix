@@ -3,7 +3,6 @@
     ./chromium.nix
     ./firefox.nix
     ./kdeconnect.nix
-    # ./obs-studio.nix
     ./steam.nix
   ];
 
@@ -27,13 +26,11 @@
   programs.nh.enable = true;
   programs.nh.flake = "/home/jenya/nixos-pc-conf/";
 
-  # akonadi services disabled
-  programs.kde-pim = {
-    enable = false;
-    kmail = false;
-    merkuro = false;
-    kontact = false;
-  };
+  # plasma6 ставит programs.kde-pim.enable = mkDefault true (nixpkgs/nixos/modules/
+  # services/desktop-managers/plasma6.nix), и тогда прилетает весь KDE PIM:
+  # akonadi, kmail, kontact, korganizer, akregator (~178 МиБ). Явный false это
+  # перекрывает. Без этой строки набор пакетов системы вырастет.
+  programs.kde-pim.enable = false;
 
   # appimage-run
   programs.appimage.enable = true;
