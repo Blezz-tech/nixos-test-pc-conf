@@ -65,9 +65,13 @@ Haskell (весь стек закомментирован): `pkgs.haskell.packag
 `pkgs.haskell.packages.ghc9122.hlint`, `pkgs.haskell.packages.ghc9122.ghc`,
 `pkgs.ghciwatch`.
 
-PHP: `myPHP.php`, `myPHP.php.packages.composer`, `myPHP.php.packages.php-codesniffer`. Объявление `myPHP` в файле
-осталось, но не используется — при возврате PHP правьте `pkgs.php83` на актуальную
-версию.
+PHP: `myPHP.php`, `myPHP.php.packages.composer`, `myPHP.php.packages.php-codesniffer`.
+Объявление `myPHP` было мёртвым кодом (собиралось при eval, но нигде не
+использовалось) и удалено — восстанавливать отсюда. Расширения, которые в нём
+перечислялись: `all.bcmath`, `all.tokenizer`, `all.curl`, `all.gd`, `all.intl`,
+`all.mbstring`, `all.zip`, `all.sqlite3`, `all.pdo_mysql`, `all.mysqli`,
+`all.redis` (`all.xml` был закомментирован). При возврате PHP замените
+`pkgs.php83` на актуальную версию из nixpkgs.
 
 C/C++: `pkgs.gcc`, `pkgs.cmake` (сейчас стоят только `clang` и `clang-analyzer`).
 
