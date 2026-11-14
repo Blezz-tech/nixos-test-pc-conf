@@ -1,11 +1,7 @@
+# Оглавление сервисов NixOS. Здесь должны быть только импорты.
 { ... }: {
   imports = [
     ./fwupd.nix
-    ./syncthing.nix
+    ./psd.nix
   ];
-
-  services.psd = {
-    enable = true;
-    resyncTimer = "15m";
-  };
 }
