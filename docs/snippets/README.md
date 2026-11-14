@@ -15,6 +15,11 @@
 | `postgresql.nix` | `services.postgresql` + `ensureDatabases`/`ensureUsers` | импорт отключён: локальная БД не используется |
 | `sunshine.nix` | `services.sunshine.enable` (сервер стриминга) | импорт отключён: стриминг не настроен |
 | `obs-studio.nix` | `programs.obs-studio` + плагины `wlrobs`, `obs-backgroundremoval` | импорт отключён: OBS не установлен ни в NixOS, ни в home-manager |
+| `v2raya.nix` | `services.v2raya.enable` | импорт отключён: одна строка, сервис не используется |
+| `weblate.nix` | `services.weblate.enable` | импорт отключён: одна строка, сервис не используется |
+| `whoogle-search.nix` | `services.whoogle-search.enable` | импорт отключён: одна строка, сервис не используется |
+| `zapret.nix` | `services.zapret` с ручными списками `udpPorts` и `blezz-pkgs`-пакетами | импорт отключён: то же самое уже делает `services.proxy-suite.zapret` в `nixos/proxy-suite.nix` (другой конфиг: `general(FAKE_TLS_AUTO_ALT3)`) |
+| `kde-xdgdata-overlay.nix` | overlay, склеивающий `XDG_DATA_DIRS` для `plasma-workspace` | отключён в `nixos/overlays.nix`; лечил замедление KDE, симптомов больше нет |
 
 Вернуть в работу: скопировать файл обратно в исходный каталог (`nixos/modules/`, `nixos/services/`
 или `nixos/programs/`) и добавить импорт в соответствующий `default.nix`.

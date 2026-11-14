@@ -20,13 +20,13 @@
 | 01 | chore: `.gitignore` + это оглавление | `.gitignore`, `docs/REFACTORING-STEPS.md` | мусор (`result`, `.direnv`) не попадёт в репозиторий |
 | 02 | chore: мёртвые модули NixOS | `modules/vr.nix`, `documentation.nix` → `docs/snippets/` | 43 из 51 строк `vr.nix` закомментированы; оба файла не импортируются |
 | 03 | chore: мёртвые сервисы, часть 1 | `services/{tor,postgresql,sunshine}.nix`, `programs/obs-studio.nix` → `docs/snippets/` | модули отключены, но лежат в дереве и создают иллюзию «оно работает» |
-| 04 | chore: мёртвые сервисы, часть 2 | `services/{v2raya,weblate,whoogle-search,zapret,syncthing}.nix`, `overlays/envvar.nix` → `docs/snippets/` | то же; `zapret` уже есть в `proxy-suite`, `syncthing` — в home-manager |
+| 04 | chore: мёртвые сервисы, часть 2 | `services/{v2raya,weblate,whoogle-search,zapret}.nix`, `overlays/envvar.nix` → `docs/snippets/` | то же; `zapret` дублирует `proxy-suite`. `syncthing.nix` остаётся: он открывает порты и подключён |
 | 05 | chore: no-op опции | `permittedInsecurePackages = []`, `programs.kde-pim { enable = false; … }`, `users.packages = []` | это значения по умолчанию — строки только шумят |
 | 06 | chore: неиспользуемые аргументы | `pkgs` в `programs/chromium.nix`, `services/default.nix`, `modules/i18n.nix`, `services/postgresql.nix` | deadnix-ошибки, из-за них линтер не включить |
 | 07 | refactor: `openssh.nix` по содержимому | → `gnupg.nix` + `mtr.nix` | файл называется «ssh», а внутри gpg-agent и `mtr` |
 | 08 | refactor: разбить `modules/default.nix` (1) | `boot.nix`, `environment.nix` | 64 строки в одном файле про загрузчик, wayland-переменные и Android-эмулятор |
 | 09 | refactor: разбить `modules/default.nix` (2) | `nixpkgs.nix`, `virtualisation.nix`; `default.nix` становится списком импортов | то же |
-| 10 | refactor: syncthing и psd | порты → `modules/networking.nix`; `services/psd.nix` | порты жили в модуле с 24 закомментированными строками настроек |
+| 10 | refactor: syncthing и psd | `services/syncthing.nix` (только порты) → `modules/networking.nix`; `services/psd.nix` | файл называется syncthing, но `services.syncthing` в нём закомментирован, а живого кода — 2 строки про firewall |
 | 11 | refactor: `programs/default.nix` → `system.nix` | тело файла в `system.nix`, выключенные блоки убраны | `default.nix` должен быть оглавлением, а не свалкой |
 | 12 | refactor: `config.nix` → `modules/plasma-systemmonitor.nix` | опция и её включение в одном файле | сейчас опция объявлена в одном файле, а включается в другом |
 | 13 | refactor: `systemPackages` | убрать `home-manager` и `partitionmanager`, сгруппировать | `home-manager` подключён модулем; `partitionmanager` ставит `programs.partition-manager` |
