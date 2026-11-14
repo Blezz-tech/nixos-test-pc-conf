@@ -1,6 +1,32 @@
-# One CLI to format the code tree - https://git.numtide.com/numtide/treefmt
+# One CLI to format the whole tree: `nix fmt` (или `treefmt`)
+# https://treefmt.com/latest/
 
-[formatter.nix]
-command = "nixpkgs-fmt"
+[global]
+# docs/snippets — архивы кода: форматировать их незачем, а диффы они шумят.
+excludes = ["flake.lock", "docs/**"]
+
+# Порядок: сначала переписывают код статические линтеры, потом его укладывает nixfmt.
+# treefmt запускает форматтеры по возрастанию priority.
+
+[formatter.statix]
+command = "statix"
+options = ["fix"]
 includes = ["*.nix"]
+priority = 1
 
+[formatter.deadnix]
+command = "deadnix"
+options = ["--edit"]
+includes = ["*.nix"]
+priority = 1
+
+[formatter.nixfmt]
+command = "nixfmt"
+includes = ["*.nix"]
+priority = 2
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["-i", "2", "-s", "-w"]
+includes = ["*.sh"]
+excludes = ["scripts.sh"]
