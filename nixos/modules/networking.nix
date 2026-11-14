@@ -9,8 +9,8 @@
     # (home/programs/syncthing.nix): у home-manager нет опции openDefaultPorts,
     # поэтому порты открываются здесь, иначе синхронизация пойдёт только через
     # реле. 22000/tcp+udp — обмен с устройствами, 21027/udp — обнаружение в сети.
-    allowedTCPPorts = [ 22000 ];
-    allowedUDPPorts = [ 22000 21027 ];
+    firewall.allowedTCPPorts = [ 22000 ];
+    firewall.allowedUDPPorts = [ 22000 21027 ];
   };
   networking.extraHosts = ''
     127.0.0.1 mc.yandex.ru
