@@ -13,7 +13,7 @@
 
 ## Шаги
 
-Прогресс: **01–11** смержены.
+Прогресс: **01–12** смержены.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -29,7 +29,7 @@
 | 10 | refactor: syncthing и psd | порты syncthing → `modules/networking.nix`; `services/psd.nix`; `services/syncthing.nix` удалён | файл называется syncthing, но `services.syncthing` в нём закомментирован (он в home-manager), а живого кода — 2 строки про firewall |
 | 11 | refactor: `programs/default.nix` → `system.nix` | тело файла в `system.nix`, выключенные программы → `docs/snippets/programs-disabled.nix` | `default.nix` должен быть оглавлением, а не свалкой |
 | 12 | refactor: `config.nix` → `modules/plasma-systemmonitor.nix` | своя опция `programs.plasma-systemmonitor` убрана, остался `security.wrappers` | опция объявлялась в одном файле, включалась в другом, и её никто не переопределял |
-| 13 | refactor: `systemPackages` | убрать `home-manager` и `partitionmanager`, сгруппировать | `home-manager` подключён модулем; `partitionmanager` ставит `programs.partition-manager` |
+| 13 | refactor: `systemPackages` | убрать дубль `partitionmanager`, сгруппировать по темам; `home-manager` оставлен с объяснением | `partitionmanager` ставит `programs.partition-manager`; `home-manager` не дубль — HM как модуль NixOS свою CLI не ставит |
 | 14 | refactor: `home/XDG` → `home/xdg` | переименование каталога | остальные каталоги в нижнем регистре |
 | 15 | refactor: `packs/default.nix` → `base.nix` | `programs.*` и keepassxc переезжают в отдельный файл | `default.nix` = только список импортов |
 | 16 | refactor: data-файлы v2rayN | из `home/shell/default.nix` → `home/programs/packs/base.nix` | они про приложение, а не про shell |
