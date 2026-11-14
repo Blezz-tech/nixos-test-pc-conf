@@ -48,7 +48,6 @@
   
   # nixpkgs settings
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ ];
   # nixpkgs.config.rocmSupport = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
