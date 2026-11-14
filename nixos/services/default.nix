@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{ ... }: {
   imports = [
     ./fwupd.nix
     ./syncthing.nix

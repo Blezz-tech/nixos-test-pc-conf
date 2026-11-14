@@ -13,7 +13,7 @@
 
 ## Шаги
 
-Прогресс: **01–04** смержены.
+Прогресс: **01–05** смержены.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -22,7 +22,7 @@
 | 03 | chore: мёртвые сервисы, часть 1 | `services/{tor,postgresql,sunshine}.nix`, `programs/obs-studio.nix` → `docs/snippets/` | модули отключены, но лежат в дереве и создают иллюзию «оно работает» |
 | 04 | chore: мёртвые сервисы, часть 2 | `services/{v2raya,weblate,whoogle-search,zapret}.nix`, `overlays/envvar.nix` → `docs/snippets/` | то же; `zapret` дублирует `proxy-suite`. `syncthing.nix` остаётся: он открывает порты и подключён |
 | 05 | chore: no-op опции | `permittedInsecurePackages = []`, `programs.kde-pim { enable = false; … }`, `users.packages = []` | это значения по умолчанию — строки только шумят |
-| 06 | chore: неиспользуемые аргументы | `pkgs` в `programs/chromium.nix`, `services/default.nix`, `modules/i18n.nix`, `services/postgresql.nix` | deadnix-ошибки, из-за них линтер не включить |
+| 06 | chore: неиспользуемые аргументы | `pkgs` в `programs/chromium.nix`, `services/default.nix` | deadnix-ошибки, из-за них линтер не включить. В `i18n.nix` аргумент используется, `services/postgresql.nix` уже в архиве |
 | 07 | refactor: `openssh.nix` по содержимому | → `gnupg.nix` + `mtr.nix` | файл называется «ssh», а внутри gpg-agent и `mtr` |
 | 08 | refactor: разбить `modules/default.nix` (1) | `boot.nix`, `environment.nix` | 64 строки в одном файле про загрузчик, wayland-переменные и Android-эмулятор |
 | 09 | refactor: разбить `modules/default.nix` (2) | `nixpkgs.nix`, `virtualisation.nix`; `default.nix` становится списком импортов | то же |
