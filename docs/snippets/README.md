@@ -20,6 +20,7 @@
 | `whoogle-search.nix` | `services.whoogle-search.enable` | импорт отключён: одна строка, сервис не используется |
 | `zapret.nix` | `services.zapret` с ручными списками `udpPorts` и `blezz-pkgs`-пакетами | импорт отключён: то же самое уже делает `services.proxy-suite.zapret` в `nixos/proxy-suite.nix` (другой конфиг: `general(FAKE_TLS_AUTO_ALT3)`) |
 | `kde-xdgdata-overlay.nix` | overlay, склеивающий `XDG_DATA_DIRS` для `plasma-workspace` | отключён в `nixos/overlays.nix`; лечил замедление KDE, симптомов больше нет |
+| `openssh-server.nix` | рабочий модуль `services.openssh`: порт 22, без пароля, по ключам | SSH-сервер в конфиге не включён: вход на машину только локальный. Раньше жил закомментированным в `nixos/modules/openssh.nix` |
 
 Вернуть в работу: скопировать файл обратно в исходный каталог (`nixos/modules/`, `nixos/services/`
 или `nixos/programs/`) и добавить импорт в соответствующий `default.nix`.
