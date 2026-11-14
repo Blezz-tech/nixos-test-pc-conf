@@ -22,6 +22,7 @@
 | `kde-xdgdata-overlay.nix` | overlay, склеивающий `XDG_DATA_DIRS` для `plasma-workspace` | отключён в `nixos/overlays.nix`; лечил замедление KDE, симптомов больше нет |
 | `openssh-server.nix` | рабочий модуль `services.openssh`: порт 22, без пароля, по ключам | SSH-сервер в конфиге не включён: вход на машину только локальный. Раньше жил закомментированным в `nixos/modules/openssh.nix` |
 | `xdg-mime.nix` | `xdg.mime.enable` + `addedAssociations` для drawio | был закомментированным примером в `nixos/modules/default.nix` |
+| `programs-disabled.nix` | `programs.throne`, `zoom-us`, `openvpn3` | были закомментированы в `nixos/programs/default.nix` |
 
 Вернуть в работу: скопировать файл обратно в исходный каталог (`nixos/modules/`, `nixos/services/`
 или `nixos/programs/`) и добавить импорт в соответствующий `default.nix`.
