@@ -13,7 +13,7 @@
 
 ## Шаги
 
-Прогресс: **01–14** смержены.
+Прогресс: **01–15** смержены.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -32,7 +32,7 @@
 | 13 | refactor: `systemPackages` | убрать дубль `partitionmanager`, сгруппировать по темам; `home-manager` оставлен с объяснением | `partitionmanager` ставит `programs.partition-manager`; `home-manager` не дубль — HM как модуль NixOS свою CLI не ставит |
 | 14 | refactor: `home/XDG` → `home/xdg` | переименование каталога, убран мёртвый импорт `# ./fcitx5` | остальные каталоги в нижнем регистре; `fcitx5` в дереве нет |
 | 15 | refactor: `packs/default.nix` → `base.nix` | `programs.*` и keepassxc переезжают в отдельный файл | `default.nix` = только список импортов, 10 файлов packs/ были списком импортов с довеском |
-| 16 | refactor: data-файлы v2rayN | из `home/shell/default.nix` → `home/programs/packs/base.nix` | они про приложение, а не про shell |
+| 16 | refactor: data-файлы v2rayN | из `home/shell/default.nix` → `home/programs/v2rayn.nix` | они про приложение, а не про shell; в `home/programs/` уже по файлу на приложение |
 | 17 | docs: wishlist пакетов | `docs/notes/packages-wishlist.md` | 176 закомментированных пакетов в коде — это не код |
 | 18 | chore: `common.nix` | только реально установленные пакеты, сгруппированные | 108 из 191 строк — комментарии |
 | 19 | chore: `packs`: games, media, messengers | убрать комментарии | 68 из 91 строки в `games.nix` — комментарии |
