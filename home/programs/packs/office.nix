@@ -1,17 +1,17 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.libreoffice-qt-stable
-    pkgs.onlyoffice-desktopeditors
+  home.packages = with pkgs; [
+    libreoffice-qt-stable
+    onlyoffice-desktopeditors
 
     # Словари для libreoffice
-    pkgs.hunspell
-    pkgs.hunspellDicts.ru_RU
-    pkgs.hunspellDicts.en_US
+    hunspell
+    hunspellDicts.ru_RU
+    hunspellDicts.en_US
 
     # Словари
-    pkgs.aspell
-    pkgs.aspellDicts.en
-    pkgs.aspellDicts.ru
+    aspell
+    aspellDicts.en
+    aspellDicts.ru
   ];
 }

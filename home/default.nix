@@ -1,19 +1,15 @@
-{ username
-, ...
-}:
+{ username, homeStateVersion ? "26.05", ... }:
 {
   imports = [
     ./programs
     ./shell
-    ./XDG
-    # ./fcitx5
-
+    ./xdg
   ];
 
   home = {
-    username = "${username}";
+    inherit username;
     homeDirectory = "/home/${username}";
-    stateVersion = "26.05";
+    stateVersion = homeStateVersion;
   };
 
   # Let home Manager install and manage itself.

@@ -1,6 +1,8 @@
+{ config, username, ... }:
 {
   services.proxy-suite = {
     enable = true;
+
     zapret = {
       enable = true;
       zapret-discord-youtube = {
@@ -18,9 +20,11 @@
         ]; # more sites to unblock
       };
     };
+
     tgWsProxy = {
       enable = true;
-      secretFile = "/home/jenya/tg-ws-proxy-secret";
+      # TODO: переехать на sops-nix (docs/REFACTORING.md, этап 6)
+      secretFile = "${config.users.users.${username}.home}/tg-ws-proxy-secret";
     };
   };
 }

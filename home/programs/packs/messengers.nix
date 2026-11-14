@@ -1,16 +1,10 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.discord-canary
-    pkgs.discord
-    pkgs.telegram-desktop
-    pkgs.vesktop
-    # pkgs.element-desktop
-    # pkgs.discord-screenaudio
-    # pkgs.webcord-vencord
-    # pkgs.nheko
-    # pkgs.fractal
-    # pkgs.revolt-desktop
-    pkgs.thunderbird
+  home.packages = with pkgs; [
+    discord-canary
+    discord
+    vesktop
+    telegram-desktop
+    thunderbird
   ];
 }

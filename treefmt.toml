@@ -1,6 +1,25 @@
-# One CLI to format the code tree - https://git.numtide.com/numtide/treefmt
+# Конфиг treefmt — используется `nix fmt` (см. flake.nix → formatter).
+# Форматтеры:
+#   nixfmt  — форматирование Nix (замена устаревшего nixpkgs-fmt)
+#   deadnix — удаление мёртвого кода (неиспользуемые аргументы, биндинги)
+#   statix  — автофикс антипаттернов Nix
+#   shfmt   — форматирование shell-скриптов
 
-[formatter.nix]
-command = "nixpkgs-fmt"
+[formatter.nixfmt]
+command = "nixfmt"
 includes = ["*.nix"]
 
+[formatter.deadnix]
+command = "deadnix"
+options = ["--edit"]
+includes = ["*.nix"]
+
+[formatter.statix]
+command = "statix"
+options = ["fix"]
+includes = ["*.nix"]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["-i", "2", "-s"]
+includes = ["*.sh"]

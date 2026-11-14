@@ -1,20 +1,19 @@
+{ username, ... }:
 {
   imports = [
     ./modules
     ./services
     ./programs
-    ./config.nix
     ./hardware-configuration.nix
-    ./overlays.nix
+    ./overlays
     ./packages.nix
     ./proxy-suite.nix
   ];
 
   time.timeZone = "Europe/Moscow";
+  # system.stateVersion задаётся в hosts.nix (lib/mkHost).
 
-  system.stateVersion = "26.05";
-
-  # xdg_open should work in steam_run this way… well it’s not 
+  # xdg_open should work in steam_run this way… well it’s not
   # https://github.com/NixOS/nixpkgs/issues/160923
   xdg.portal = {
     enable = true;
@@ -27,18 +26,10 @@
     plasma-login-manager.enable = true;
     autoLogin = {
       enable = true;
-      user = "jenya";
+      user = username;
     };
   };
 
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
-
-  # environment.shellInit = ''
-  #   export XDG_DATA_DIRS=$(echo $XDG_DATA_DIRS | tr ':' '\n' | sort | uniq | tr '\n' ':')
-  #   export XDG_DATA_DIRS=$(echo $XDG_DATA_DIRS | tr ':' '\n' | sort | uniq | tr '\n' ':')
-  #   export QT_PLUGIN_PATH=$(echo $QT_PLUGIN_PATH | tr ':' '\n' | sort | uniq | tr '\n' ':')
-  #   export XDG_CONFIG_DIRS=$(echo $XDG_CONFIG_DIRS | tr ':' '\n' | sort | uniq | tr '\n' ':')
-  #   export NIXPKGS_QT6_QML_IMPORT_PATH=$(echo $NIXPKGS_QT6_QML_IMPORT_PATH | tr ':' '\n' | sort | uniq | tr '\n' ':')
-  # '';
 }

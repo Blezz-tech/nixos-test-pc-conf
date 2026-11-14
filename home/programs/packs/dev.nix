@@ -1,94 +1,56 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 let
-  myPHP.php = pkgs.php83.withExtensions ({ enabled, all }: enabled ++ [
-    all.bcmath
-    all.tokenizer
-    all.curl
-    all.gd
-    all.intl
-    # all.xml
-    all.mbstring
-    all.zip
-    all.sqlite3
-    all.pdo_mysql
-    all.mysqli
-    all.redis # Для Redis
-  ]);
-  python-custom = (pkgs.python313.withPackages (python-pkgs: [
-    # python-pkgs.jupyter
-    # python-pkgs.ipykernel
-    # python-pkgs.pyautogui
-    python-pkgs.scipy
-    # python-pkgs.pynput
-    python-pkgs.numpy
-    python-pkgs.pandas
-    python-pkgs.matplotlib
-    python-pkgs.sympy
-    # python-pkgs.scikit-learn
-    # python-pkgs.nltk
-    # python-pkgs.pymorphy3
-    # python-pkgs.plotly # NOTE: Долго билдится
-    # python-pkgs.torch
-    python-pkgs.python-lsp-server
-    python-pkgs.beautifulsoup4
-    python-pkgs.black # python formattier
-    # python-pkgs.jupyter
-    # python-pkgs.notebook
-  ]));
+  # Python со «стандартным» набором библиотек
+  python-custom = pkgs.python313.withPackages (
+    python-pkgs: with python-pkgs; [
+      numpy
+      pandas
+      scipy
+      sympy
+      matplotlib
+      beautifulsoup4
+      python-lsp-server
+      black # formatter
+    ]
+  );
 in
 {
-  home.packages = [
-    # Haskell
-    # pkgs.haskell.packages.ghc9122.cabal-install
-    # pkgs.haskell.packages.ghc9122.haskell-language-server
-    # pkgs.haskell.packages.ghc9122.hlint
-    # pkgs.haskell.packages.ghc9122.ghc
-    # pkgs.ghciwatch
-
-    ## PHP
-    # myPHP.php
-    # myPHP.php.packages.composer
-    # myPHP.php.packages.php-codesniffer
-
-    ## Python
+  home.packages = with pkgs; [
+    # Python
     python-custom
-    
-    ## C/C++
-    # pkgs.gcc
-    pkgs.clang
-    pkgs.clang-analyzer
-    # pkgs.cmake
-    
-    ## Lua
-    pkgs.lua
-    
-    ## Rust
-    pkgs.cargo
-    pkgs.rustc
-    pkgs.rust-analyzer
-    pkgs.uv
-    pkgs.rustfmt # rust
-    
-    ## Other
-    # pkgs.agda
-    # pkgs.rocq-core
-    # pkgs.coqPackages.vscoq-language-server # coq/rocq
-    pkgs.gnumake
-    pkgs.luarocks
-    pkgs.nix-search
-    pkgs.nufmt # nushell
-    pkgs.nixpkgs-fmt # nix
-    # pkgs.nodePackages_latest.prettier
 
-    ### LSP
-    pkgs.marksman # markdown
-    pkgs.typescript-language-server # js/typescript
-    pkgs.nixd # nix
-    pkgs.nil # nix
-    pkgs.vscode-langservers-extracted # css eslint html json markdown
-    pkgs.yaml-language-server # yaml
-    pkgs.bash-language-server # bash
+    # C/C++
+    clang
+    clang-analyzer
+
+    # Lua
+    lua
+    luarocks
+
+    # Rust
+    cargo
+    rustc
+    rustfmt
+    rust-analyzer
+    uv
+
+    # Nix
+    nix-search
+    nixd # LSP
+    nil # LSP
+    nixfmt # форматтер (nixpkgs-fmt устарел)
+    statix
+    deadnix
+    nufmt # nushell
+
+    # Сборка
+    gnumake
+
+    # LSP
+    marksman # markdown
+    typescript-language-server # js/typescript
+    vscode-langservers-extracted # css eslint html json markdown
+    yaml-language-server # yaml
+    bash-language-server # bash
   ];
 }

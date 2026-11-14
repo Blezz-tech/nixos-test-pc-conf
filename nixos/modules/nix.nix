@@ -3,21 +3,13 @@
     optimise.automatic = true;
 
     settings = {
-      # trusted-public-keys = [
-      #   # "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-      #   # "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" # haskell.nix
-      #   # "ghc-nix.cachix.org-1:ziC/I4BPqeA4VbtOFpFpu6D1t6ymFvRWke/lc2+qjcg=" # GHC
-      # ];
-      # substituters = [
-      #   # "https://ezkea.cachix.org" 
-      #   # "https://cache.iog.io" # haskell.nix
-      #   # "https://ghc-nix.cachix.org" # GHC
-      # ];
-
       experimental-features = [
         "nix-command"
         "flakes"
       ];
+
+      # Фичи билдера. Нужны, если включать nixpkgs.hostPlatform.gcc.arch/tune —
+      # см. docs/notes/reference.md («Оптимизация под конкретный процессор»).
       system-features = [
         # "gccarch-alderlake"
         # "gcctune-alderlake"
@@ -26,7 +18,8 @@
         "kvm"
         "nixos-test"
       ];
-      # max-jobs = 4;
+
+      # substituters/trusted-public-keys для своего кэша добавлять здесь
     };
 
     gc = {

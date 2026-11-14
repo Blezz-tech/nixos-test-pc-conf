@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.google-chrome
-    pkgs.tor-browser
-    pkgs.vivaldi
+  home.packages = with pkgs; [
+    google-chrome
+    tor-browser
+    vivaldi
   ];
 }

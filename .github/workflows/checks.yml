@@ -1,0 +1,34 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      # Проверяем, что конфигурация вычисляется (ловит eval-ошибки и конфликты опций)
+      - name: eval
+        run: nix build --dry-run .#nixosConfigurations.nixos-jenya.config.system.build.toplevel
+
+      - name: flake check
+        run: nix flake check --no-build
+
+      # Линтеры пока не блокирующие: сначала нужно один раз прогнать `nix fmt`
+      # и починить найденное. После этого убрать continue-on-error.
+      - name: statix
+        continue-on-error: true
+        run: nix run nixpkgs#statix -- check .
+
+      - name: deadnix
+        continue-on-error: true
+        run: nix run nixpkgs#deadnix -- --fail .
+
+      - name: formatting
+        continue-on-error: true
+        run: nix fmt -- --ci

@@ -1,4 +1,6 @@
-
+#!/usr/bin/env bash
+# Дедупликация путей в переменных окружения (XDG_DATA_DIRS и т.п.)
+# Запуск: bash scripts/xdg-dedup.sh
 
 echo $XDG_DATA_DIRS    | tr ':' '\n' | sort | uniq -c
 echo "||||"

@@ -1,36 +1,31 @@
-{ pkgs
-# , nur
-, ...
-}:
+{ pkgs, ... }:
 {
+  # Общесистемные пакеты. Приложения пользователя — в home/programs/.
+  #
+  # NOTE: pkgs.home-manager здесь не нужен — home-manager подключён как модуль.
+  # NOTE: pkgs.kdePackages.partitionmanager не нужен — его ставит
+  #       programs.partition-manager (nixos/programs/system.nix).
+  environment.systemPackages = with pkgs; [
+    # Диски и восстановление данных
+    testdisk-qt
+    ddrescue
+    ext4magic
+    ntfs3g
 
-  environment.systemPackages = [
-    # pkgs.nur.repos.ataraxiasjel.waydroid-script
+    # Базовые утилиты
+    xdg-utils
+    git
+    wget
+    wget2
+    curl
+    wireguard-tools
+    lzip # for waydroid
+    libdecor
 
-    pkgs.testdisk-qt
-    pkgs.ddrescue
-    pkgs.ext4magic
-    pkgs.libdecor
-    # pkgs.jetbrains.pycharm-community
+    # Аудио/видео
+    vlc
 
-    pkgs.xdg-utils
-    pkgs.git
-    pkgs.wget
-    pkgs.wget2
-    pkgs.curl
-    pkgs.wireguard-tools
-    # pkgs.vopono
-    pkgs.ntfs3g
-
-    pkgs.home-manager
-
-    pkgs.steam-run
-    pkgs.lzip # for waydroid
-
-    # Аудио видео проигрыватели
-    pkgs.vlc
-
-    # Диспеер раздеов дисков
-    pkgs.kdePackages.partitionmanager
+    # Запуск сторонних бинарников
+    steam-run
   ];
 }

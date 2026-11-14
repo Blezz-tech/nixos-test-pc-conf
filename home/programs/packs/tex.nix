@@ -1,31 +1,27 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 let
-  tex = pkgs.texliveSmall.withPackages (ps: with ps; [
-    fontspec
-    polyglossia
-    amsmath
-    hyphen-russian
-    standalone
-    luatex85
-    pgfplots
-    cancel
-    lualatex-math
-    enumitem
-  ]);
+  tex = pkgs.texliveSmall.withPackages (
+    ps: with ps; [
+      fontspec
+      polyglossia
+      amsmath
+      hyphen-russian
+      standalone
+      luatex85
+      pgfplots
+      cancel
+      lualatex-math
+      enumitem
+    ]
+  );
 in
 {
-  home.packages = [
-    # pkgs.texlive.combined.scheme-full
+  home.packages = with pkgs; [
     tex
-    pkgs.ghostscript
-    pkgs.pdf2svg
-    pkgs.poppler-utils
-    pkgs.pdftk
-    pkgs.mupdf
-    # pkgs.ocrmypdf
-    # pkgs.tesseract
-    # pkgs.pdfarranger
+    ghostscript
+    pdf2svg
+    poppler-utils
+    pdftk
+    mupdf
   ];
 }

@@ -1,20 +1,6 @@
-{ pkgs
-, ...
-}: {
-  imports = [
-    ./fwupd.nix
-    # ./postgresql.nix
-    # ./sunshine.nix
-    ./syncthing.nix
-    # ./tor.nix
-    # ./v2raya.nix
-    # ./weblate.nix
-    # ./whoogle-search.nix
-    # ./zapret.nix
-  ];
-
-  services.psd = {
-    enable = true;
-    resyncTimer = "15m";
-  };
+{ libx, ... }:
+{
+  # Сервисы подхватываются автоматически: новый *.nix в этой папке не нужно
+  # никуда вписывать. Выключенные заготовки — в docs/snippets/services/.
+  imports = libx.allModules ./.;
 }

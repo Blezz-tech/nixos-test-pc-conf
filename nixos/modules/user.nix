@@ -1,14 +1,13 @@
-{ pkgs
-, ...
-}: {
+{ pkgs, username, ... }:
+{
   programs.zsh.enable = true;
 
   users = {
     defaultUserShell = pkgs.zsh;
 
-    users.jenya = {
+    users.${username} = {
       isNormalUser = true;
-      description = "jenya";
+      description = username;
       extraGroups = [
         "networkmanager"
         "wheel"
@@ -20,7 +19,7 @@
         "lp" # Для печати
         # config.services.kubo.group
       ];
-      packages = [ ];
+      # Пакеты пользователя — в home/programs/, здесь пусто.
     };
   };
 }
