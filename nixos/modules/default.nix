@@ -3,7 +3,6 @@
 }: {
   imports = [
     ./bluetooth.nix
-    # ./documentation.nix
     ./fonts.nix
     ./i18n.nix
     ./networking.nix
@@ -17,7 +16,6 @@
     # ./specialisation.nix
     ./tty.nix
     ./user.nix
-    # ./vr.nix
   ];
 
   # specialisation."printing".configuration = {
