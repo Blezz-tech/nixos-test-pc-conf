@@ -78,11 +78,16 @@ C/C++: `pkgs.gcc`, `pkgs.cmake` (сейчас стоят только `clang` и
 Прочее: `pkgs.agda`, `pkgs.rocq-core`,
 `pkgs.coqPackages.vscoq-language-server`, `pkgs.nodePackages_latest.prettier`.
 
-Python-расширения (из `python-custom`): `python-pkgs.jupyter`,
-`python-pkgs.ipykernel`, `python-pkgs.pyautogui`, `python-pkgs.pynput`,
-`python-pkgs.scikit-learn`, `python-pkgs.nltk`, `python-pkgs.pymorphy3`,
-`python-pkgs.plotly` (долго собирается), `python-pkgs.torch`,
-`python-pkgs.notebook`. В PHP-расширениях: `all.xml`.
+Python — библиотеки, которые были закомментированы в `python-custom`:
+`python-pkgs.jupyter`, `python-pkgs.ipykernel`, `python-pkgs.pyautogui`,
+`python-pkgs.pynput`, `python-pkgs.scikit-learn`, `python-pkgs.nltk`,
+`python-pkgs.pymorphy3`, `python-pkgs.plotly` (долго собирается),
+`python-pkgs.torch`, `python-pkgs.notebook`.
+
+Стоят сейчас (не трогали): `numpy`, `scipy`, `pandas`, `matplotlib`, `sympy`,
+`beautifulsoup4`, `python-lsp-server`, `black`. В новом файле параметр
+`withPackages` называется `ps`, то есть добавлять надо `ps.jupyter`, а не
+`python-pkgs.jupyter`.
 
 ## home/programs/packs/games.nix — 62 шт.
 
