@@ -13,7 +13,7 @@
 
 ## Шаги
 
-Прогресс: **01–16** смержены.
+Прогресс: **01–18** смержены.
 
 Осталось 7 PR: шаги дальше идут парами (17–18, 19–20, 21–22, 23–24, 25–26, 27–28, 29–30).
 
@@ -37,8 +37,8 @@
 | 16 | refactor: data-файлы v2rayN | из `home/shell/default.nix` → `home/programs/v2rayn.nix` | они про приложение, а не про shell; в `home/programs/` уже по файлу на приложение |
 | 17 | docs: wishlist пакетов | `docs/notes/packages-wishlist.md` | 216 закомментированных пакетов в коде — это не код |
 | 18 | chore: `common.nix` | только реально установленные пакеты, сгруппированные | 108 из 191 строк — комментарии |
-| 19 | chore: `packs`: games, media, messengers | убрать комментарии | 68 из 91 строки в `games.nix` — комментарии |
-| 20 | chore: `packs`: dev, kde, archive, tex, office, browsers, custom | чистка + `nixfmt` вместо устаревшего `nixpkgs-fmt` | то же + мёртвый `myPHP` |
+| 19 | chore: `packs`: games, media, messengers | убрать комментарии (переехали в wishlist) | 68 из 91 строки в `games.nix` — комментарии |
+| 20 | chore: `packs`: dev, kde, archive, tex, office, browsers, custom | чистка, `nixfmt` вместо `nixpkgs-fmt`, удалён мёртвый `myPHP` | `nixpkgs-fmt` заброшен; `myPHP` объявлялся и не использовался |
 | 21 | docs: заметки и заготовки | `docs/notes/{reference,solved}.md`, `docs/snippets/*` | знания из комментариев в конфигах → в документацию |
 | 22 | docs: переписать `TODO.md` | валидный markdown, ~10 закрываемых задач | 167 заголовков на 5 чекбоксов + незакрытый блок кода на 200 строк |
 | 23 | chore: `treefmt` | `nixfmt` + `deadnix` + `statix` + `shfmt`, `.vscode` | `treefmt.toml` не подключён к флейку, а `nixpkgs-fmt` устарёл |

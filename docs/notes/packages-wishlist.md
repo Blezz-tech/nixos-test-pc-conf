@@ -65,20 +65,29 @@ Haskell (весь стек закомментирован): `pkgs.haskell.packag
 `pkgs.haskell.packages.ghc9122.hlint`, `pkgs.haskell.packages.ghc9122.ghc`,
 `pkgs.ghciwatch`.
 
-PHP: `myPHP.php`, `myPHP.php.packages.composer`, `myPHP.php.packages.php-codesniffer`. Объявление `myPHP` в файле
-осталось, но не используется — при возврате PHP правьте `pkgs.php83` на актуальную
-версию.
+PHP: `myPHP.php`, `myPHP.php.packages.composer`, `myPHP.php.packages.php-codesniffer`.
+Объявление `myPHP` было мёртвым кодом (собиралось при eval, но нигде не
+использовалось) и удалено — восстанавливать отсюда. Расширения, которые в нём
+перечислялись: `all.bcmath`, `all.tokenizer`, `all.curl`, `all.gd`, `all.intl`,
+`all.mbstring`, `all.zip`, `all.sqlite3`, `all.pdo_mysql`, `all.mysqli`,
+`all.redis` (`all.xml` был закомментирован). При возврате PHP замените
+`pkgs.php83` на актуальную версию из nixpkgs.
 
 C/C++: `pkgs.gcc`, `pkgs.cmake` (сейчас стоят только `clang` и `clang-analyzer`).
 
 Прочее: `pkgs.agda`, `pkgs.rocq-core`,
 `pkgs.coqPackages.vscoq-language-server`, `pkgs.nodePackages_latest.prettier`.
 
-Python-расширения (из `python-custom`): `python-pkgs.jupyter`,
-`python-pkgs.ipykernel`, `python-pkgs.pyautogui`, `python-pkgs.pynput`,
-`python-pkgs.scikit-learn`, `python-pkgs.nltk`, `python-pkgs.pymorphy3`,
-`python-pkgs.plotly` (долго собирается), `python-pkgs.torch`,
-`python-pkgs.notebook`. В PHP-расширениях: `all.xml`.
+Python — библиотеки, которые были закомментированы в `python-custom`:
+`python-pkgs.jupyter`, `python-pkgs.ipykernel`, `python-pkgs.pyautogui`,
+`python-pkgs.pynput`, `python-pkgs.scikit-learn`, `python-pkgs.nltk`,
+`python-pkgs.pymorphy3`, `python-pkgs.plotly` (долго собирается),
+`python-pkgs.torch`, `python-pkgs.notebook`.
+
+Стоят сейчас (не трогали): `numpy`, `scipy`, `pandas`, `matplotlib`, `sympy`,
+`beautifulsoup4`, `python-lsp-server`, `black`. В новом файле параметр
+`withPackages` называется `ps`, то есть добавлять надо `ps.jupyter`, а не
+`python-pkgs.jupyter`.
 
 ## home/programs/packs/games.nix — 62 шт.
 
