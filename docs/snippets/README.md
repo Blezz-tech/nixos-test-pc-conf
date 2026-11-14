@@ -23,6 +23,12 @@
 | `openssh-server.nix` | рабочий модуль `services.openssh`: порт 22, без пароля, по ключам | SSH-сервер в конфиге не включён: вход на машину только локальный. Раньше жил закомментированным в `nixos/modules/openssh.nix` |
 | `xdg-mime.nix` | `xdg.mime.enable` + `addedAssociations` для drawio | был закомментированным примером в `nixos/modules/default.nix` |
 | `programs-disabled.nix` | `programs.throne`, `zoom-us`, `openvpn3` | были закомментированы в `nixos/programs/default.nix` |
+| `kmscon.nix` | `services.kmscon` с hwRender | альтернатива обычной tty (юникод, KMS-шрифты), пробовать на specialisation |
+| `keyd.nix` | `services.keyd`: CapsLock как Ctrl/Esc | ремап клавиш для консоли, X11 и Wayland сразу |
+| `xdg-portal.nix` | `xdg.portal` с явными порталами KDE | портал включён без этих строк; нужно, если приложения жалуются на FileChooser/ScreenCast |
+| `activation-diff.nix` | `system.activationScripts` с `nix store diff-closures` | показывает изменения пакетов при переключении; в конфиге не включён |
+| `wallpapers.nix` | пакет с обоями из GitHub | заготовка пакета, hash надо обновлять вручную |
+| `ascii-art.md` | ASCII-арт и функция для fastfetch | не конфиг, а банк картинок |
 
 Вернуть в работу: скопировать файл обратно в исходный каталог (`nixos/modules/`, `nixos/services/`
 или `nixos/programs/`) и добавить импорт в соответствующий `default.nix`.
