@@ -14,6 +14,7 @@
     ./nix.nix
     ./nixpkgs.nix
     ./opentablet.nix
+    ./plasma-systemmonitor.nix
     ./podman.nix
     ./print_and_scan.nix
     ./sound.nix
