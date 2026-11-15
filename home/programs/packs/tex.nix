@@ -2,18 +2,20 @@
 # на несколько гигабайт; чего не хватает — добавляется в список ниже.
 { pkgs, ... }:
 let
-  tex = pkgs.texliveSmall.withPackages (ps: with ps; [
-    fontspec
-    polyglossia
-    amsmath
-    hyphen-russian
-    standalone
-    luatex85
-    pgfplots
-    cancel
-    lualatex-math
-    enumitem
-  ]);
+  tex = pkgs.texliveSmall.withPackages (
+    ps: with ps; [
+      fontspec
+      polyglossia
+      amsmath
+      hyphen-russian
+      standalone
+      luatex85
+      pgfplots
+      cancel
+      lualatex-math
+      enumitem
+    ]
+  );
 in
 {
   home.packages = [

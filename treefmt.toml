@@ -3,30 +3,25 @@
 
 [global]
 # docs/snippets — архивы кода: форматировать их незачем, а диффы они шумят.
-excludes = ["flake.lock", "docs/**"]
+# hardware-configuration.nix сгенерирован nixos-generate-config и помечен
+# "Do not modify this file" — форматтер его не трогает.
+excludes = [
+  "flake.lock",
+  "docs/**",
+  "nixos/hardware-configuration.nix",
+]
 
-# Порядок: сначала переписывают код статические линтеры, потом его укладывает nixfmt.
-# treefmt запускает форматтеры по возрастанию priority.
-
-[formatter.statix]
-command = "statix"
-options = ["fix"]
-includes = ["*.nix"]
-priority = 1
-
-[formatter.deadnix]
-command = "deadnix"
-options = ["--edit"]
-includes = ["*.nix"]
-priority = 1
+# Здесь только те форматтеры, которые меняют разметку, а не смысл.
+# statix и deadnix переписывают код (удаляют аргументы, схлопывают выражения):
+# их место в checks/CI, где дифф видно в PR, а не в тихом `nix fmt`.
+# Плюс `statix fix` внутри treefmt конфликтует с остальными форматтерами —
+# treefmt ловит "file has changed" и падает.
 
 [formatter.nixfmt]
 command = "nixfmt"
 includes = ["*.nix"]
-priority = 2
 
 [formatter.shfmt]
 command = "shfmt"
 options = ["-i", "2", "-s", "-w"]
 includes = ["*.sh"]
-excludes = ["scripts.sh"]
