@@ -1,20 +1,7 @@
-# Оглавление домашних программ: по файлу на приложение, плюс тематические
-# наборы в packs/.
-{ ... }: {
-  imports = [
-    ./chromium.nix
-    ./common.nix
-    ./direnv.nix
-    ./easyeffects.nix
-    ./eza.nix
-    ./fzf.nix
-    ./git.nix
-    ./neovim.nix
-    ./nushell.nix
-    ./syncthing.nix
-    ./v2rayn.nix
-    ./vscode.nix
-
-    ./packs
-  ];
+# Домашние программы: по файлу на приложение, плюс тематические наборы в
+# packs/. Подключается всё рекурсивно (libx.allModules), поэтому и этот
+# каталог, и packs/ — просто папки с файлами, без оглавлений.
+{ libx, ... }:
+{
+  imports = libx.allModules ./.;
 }

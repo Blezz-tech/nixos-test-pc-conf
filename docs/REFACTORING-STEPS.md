@@ -13,9 +13,9 @@
 
 ## Шаги
 
-Прогресс: **01–24** смержены, плюс догон **24a**.
+Прогресс: **01–26** смержены, плюс догон **24a**.
 
-Осталось 3 PR: 25–26 (этот), 27–28, 29–30.
+Осталось 1 PR: 27–28 (этот), 29–30.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -46,8 +46,8 @@
 | 24a | style: `nixfmt` по дереву | 34 файла: разметка по RFC-стилю, `shfmt` для `*.sh`, минус мёртвые аргументы; `statix` временно убран из `checks` | `treefmt.toml` переключён на `nixfmt` на шаге 23, а дерево осталось в стиле `nixpkgs-fmt` — иначе `checks.formatting` красный |
 | 25 | ci: GitHub Actions | `.github/workflows/check.yml` (`nix flake check` + инстанцирование) и `update-flake-lock.yml` | проверки должны идти сами |
 | 26 | refactor: `hosts.nix` + `lib/mkHost` | `hosts.nix`, `lib/default.nix`, `flake.nix`, `nixos/{default,modules/user,modules/networking}.nix` | `username` объявлен, но `users.jenya`, `user = "jenya"` и `hostName` — хардкод |
-| 27 | refactor: автоимпорт NixOS | `nixos/{modules,programs,services}/default.nix` | 3 ручных списка импортов → `libx.allModules` |
-| 28 | refactor: автоимпорт home-manager | `home/{programs,packs,shell}/default.nix` | то же |
+| 27 | refactor: автоимпорт NixOS | `lib/default.nix` (`libx.allModules`), `nixos/{modules,programs,services}/default.nix` | 3 ручных списка импортов (26 строк) → одна строка в каждом; файл рядом с другими подключается сам |
+| 28 | refactor: автоимпорт home-manager | `home/{programs,shell}/default.nix`, удалён `home/programs/packs/default.nix` | рекурсия делает оглавление packs/ лишним: 12 + 11 строк списков → 3 строки |
 | 29 | refactor: overlays по файлам | `overlays/{default,blezz-pkgs,prismlauncher}.nix` | 158 строк в одном файле, `pkgs.callPackage` → `final.callPackage` |
 | 30 | refactor: пути и алиасы | syncthing-папки, `nh`, secret, `home/shell/aliases.nix`, `README.md` | `/home/jenya` в 12 местах + алиасы, указывающие на несуществующий `#pc` |
 
