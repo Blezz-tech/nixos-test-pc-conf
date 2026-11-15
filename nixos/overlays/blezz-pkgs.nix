@@ -3,7 +3,9 @@
 #
 # Функция принимает username, чтобы пути в MURMUR не были прибиты к /home/jenya.
 { username }:
-final: prev:
+# весь оверлей поверх финального набора, поэтому prev не нужен (в zapret ниже
+# это аргумент другого лямбда, а не оверлея)
+final: _prev:
 let
   home = "/home/${username}";
   media = "/run/media/${username}";
