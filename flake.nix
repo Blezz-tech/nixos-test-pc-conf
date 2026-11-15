@@ -30,7 +30,7 @@
     }@inputs:
     let
       hosts = import ./hosts.nix;
-      mkHost = (import ./lib { inherit inputs; }).mkHost;
+      libx = import ./lib { inherit inputs; };
 
       inherit (nixpkgs) lib;
 
@@ -51,8 +51,9 @@
       pkgsFor = system: nixpkgs.legacyPackages.${system};
     in
     {
-      # Имя конфигурации = имя хоста в hosts.nix.
-      nixosConfigurations = lib.mapAttrs mkHost hosts;
+      # Имя конфигурации = имя хоста в hosts.nix. Хосты с enabled = false
+      # пропускаем: у них ещё нет hardware-configuration.nix.
+      nixosConfigurations = lib.mapAttrs libx.mkHost (libx.enabledHosts hosts);
 
       # `nix fmt` — прогоняет treefmt по дереву. PATH нужен, потому что
       # treefmt вызывает внешние команды из treefmt.toml.

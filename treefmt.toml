@@ -8,7 +8,7 @@
 excludes = [
   "flake.lock",
   "docs/**",
-  "nixos/hardware-configuration.nix",
+  "nixos/hosts/**/hardware-configuration.nix",
 ]
 
 # Здесь только те форматтеры, которые меняют разметку, а не смысл.

@@ -43,8 +43,13 @@ jobs:
             exit 1
           fi
 
-      # Инстанцирование всей системы: ловит ошибки модулей и опций, которых
-      # не видит линтер. Без --impure — если появится builtins.currentTime
-      # (см. docs/TODO.md) или file://-путь со съёмного диска, шаг это покажет.
-      - name: конфигурация инстанцируется
-        run: nix eval --raw .#nixosConfigurations.nixos-jenya.config.system.build.toplevel.drvPath
+      # Инстанцирование всех включённых хостов: ловит ошибки модулей и опций,
+      # которых не видит линтер. Без --impure — если появится
+      # builtins.currentTime (см. docs/TODO.md) или file://-путь со съёмного
+      # диска, шаг это покажет.
+      - name: конфигурации инстанцируются
+        run: |
+          nix eval --raw --apply '
+            cfgs: builtins.concatStringsSep "\n" (
+              map (c: c.config.system.build.toplevel.drvPath) (builtins.attrValues cfgs)
+            )' .#nixosConfigurations

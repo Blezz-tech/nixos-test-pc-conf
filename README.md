@@ -36,9 +36,12 @@ nix develop       # treefmt, nixfmt, deadnix, statix, shfmt, nixd
 
 | Путь | Что внутри |
 |---|---|
-| `flake.nix` | входы и выходы; конфигурации собираются через `lib/mkHost` |
-| `hosts.nix` | реестр хостов: имя атрибута = имя конфигурации и `hostName` |
-| `lib/default.nix` | `mkHost` и `libx.allModules` |
+| `flake.nix` | входы и выходы; конфигурации собираются через `libx.mkHost` |
+| `hosts.nix` | реестр хостов: имя атрибута = имя конфигурации и `hostName`; поля `role` и `enabled` |
+| `lib/default.nix` | `mkHost`, `enabledHosts`, `libx.allModules` |
+| `nixos/default.nix` | общая часть, её получает каждый хост |
+| `nixos/profiles/` | профили ролей: пока только `workstation` (графика, KDE, вход, питание) |
+| `nixos/hosts/<имя>/` | машинное: `hardware-configuration.nix` и отличия от профиля |
 | `nixos/` | системные модули, программы, сервисы, пакеты, оверлеи |
 | `home/` | home-manager: программы, наборы пакетов (`packs/`), shell, `xdg` |
 | `docs/` | заметки, заготовки, этот рефакторинг |

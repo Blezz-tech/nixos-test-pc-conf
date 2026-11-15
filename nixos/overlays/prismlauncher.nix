@@ -1,7 +1,6 @@
 # Prism Launcher с патчем под оффлайн-аккаунт: патч лежит гистом, тянем через
 # fetchpatch. Оверлей отдельный, чтобы его было видно в списке.
-final: prev:
-{
+final: prev: {
   prismlauncher-unwrapped = prev.prismlauncher-unwrapped.overrideAttrs (old: {
     patches = (old.patches or [ ]) ++ [
       (final.fetchpatch {
