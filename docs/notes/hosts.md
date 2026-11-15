@@ -80,6 +80,24 @@ server      = { system = "x86_64-linux"; username = "jenya"; homeManager = false
 Если на машине не нужен home-manager — `homeManager = false`, и каталог
 `home/hosts/myhost/` не создаётся.
 
+## Заглушка корневой ФС
+
+Пока `hardware-configuration.nix` нет, NixOS не инстанцируется: падает assertion
+«`fileSystems` не задаёт корневую ФС». Поэтому в `nixos/hosts/laptop/default.nix`
+и `nixos/hosts/server/default.nix` стоит самоснимающаяся заглушка:
+
+```nix
+fileSystems."/" = lib.mkIf (!builtins.pathExists ./hardware-configuration.nix) {
+  device = "/dev/disk/by-label/nixos";
+  fsType = "ext4";
+};
+```
+
+Она нужна только для того, чтобы `nix flake check` и инстанцирование проходили;
+как только появится настоящий `hardware-configuration.nix`, условие становится
+ложным и заглушка исчезает. **Устанавливать систему с ней нельзя** — путь
+условный.
+
 ## Что уже готово, а что нет
 
 Готово: реестр, сборка конфигурации из трёх частей, отдельные `hardware`,
