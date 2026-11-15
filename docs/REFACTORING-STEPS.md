@@ -15,7 +15,7 @@
 
 Прогресс: **01–24** смержены, плюс догон **24a**.
 
-Осталось 3 PR: 25–26, 27–28, 29–30.
+Осталось 3 PR: 25–26 (этот), 27–28, 29–30.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -44,8 +44,8 @@
 | 23 | chore: `treefmt` | `treefmt.toml`: `nixfmt` вместо `nixpkgs-fmt`, плюс `deadnix`, `statix`, `shfmt`; `.vscode` переведён на `nixfmt` | `treefmt.toml` ссылался на заброшенный `nixpkgs-fmt` и не был подключён к флейку |
 | 24 | feat: `nix fmt`, `nix develop`, `nix flake check` | `formatter`, `devShells`, `checks` (`formatting`, `deadnix`, `statix`) в `flake.nix` | без этого нечем валидировать следующие шаги и не на что навесить CI |
 | 24a | style: `nixfmt` по дереву | 34 файла: разметка по RFC-стилю, `shfmt` для `*.sh`, минус мёртвые аргументы; `statix` временно убран из `checks` | `treefmt.toml` переключён на `nixfmt` на шаге 23, а дерево осталось в стиле `nixpkgs-fmt` — иначе `checks.formatting` красный |
-| 25 | ci: GitHub Actions | lint + `update-flake-lock` | проверки должны идти сами |
-| 26 | refactor: `hosts.nix` + `lib/mkHost` | `hosts.nix`, `lib/default.nix`, `flake.nix` | `username` объявлен, но `users.jenya` — хардкод |
+| 25 | ci: GitHub Actions | `.github/workflows/check.yml` (`nix flake check` + инстанцирование) и `update-flake-lock.yml` | проверки должны идти сами |
+| 26 | refactor: `hosts.nix` + `lib/mkHost` | `hosts.nix`, `lib/default.nix`, `flake.nix`, `nixos/{default,modules/user,modules/networking}.nix` | `username` объявлен, но `users.jenya`, `user = "jenya"` и `hostName` — хардкод |
 | 27 | refactor: автоимпорт NixOS | `nixos/{modules,programs,services}/default.nix` | 3 ручных списка импортов → `libx.allModules` |
 | 28 | refactor: автоимпорт home-manager | `home/{programs,packs,shell}/default.nix` | то же |
 | 29 | refactor: overlays по файлам | `overlays/{default,blezz-pkgs,prismlauncher}.nix` | 158 строк в одном файле, `pkgs.callPackage` → `final.callPackage` |

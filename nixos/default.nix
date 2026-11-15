@@ -1,4 +1,8 @@
 {
+  username,
+  ...
+}:
+{
   imports = [
     ./modules
     ./services
@@ -26,7 +30,7 @@
     plasma-login-manager.enable = true;
     autoLogin = {
       enable = true;
-      user = "jenya";
+      user = username;
     };
   };
 

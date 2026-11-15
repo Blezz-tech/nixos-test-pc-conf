@@ -1,5 +1,6 @@
 {
   pkgs,
+  username,
   ...
 }:
 {
@@ -8,9 +9,9 @@
   users = {
     defaultUserShell = pkgs.zsh;
 
-    users.jenya = {
+    users.${username} = {
       isNormalUser = true;
-      description = "jenya";
+      description = username;
       extraGroups = [
         "networkmanager"
         "wheel"

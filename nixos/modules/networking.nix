@@ -1,4 +1,8 @@
 {
+  hostName,
+  ...
+}:
+{
   networking = {
     firewall = {
       enable = true;
@@ -16,7 +20,7 @@
 
     networkmanager.enable = true;
     # nftables.enable = true;
-    hostName = "nixos-jenya";
+    inherit hostName;
   };
   networking.extraHosts = ''
     127.0.0.1 mc.yandex.ru
