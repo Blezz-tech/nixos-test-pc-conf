@@ -13,9 +13,9 @@
 
 ## Шаги
 
-Прогресс: **01–22** смержены.
+Прогресс: **01–24** смержены, плюс догон **24a**.
 
-Осталось 4 PR: 23–24 (этот), 25–26, 27–28, 29–30.
+Осталось 3 PR: 25–26, 27–28, 29–30.
 
 | № | Шаг | Что меняется | Зачем |
 |---|-----|--------------|-------|
@@ -43,6 +43,7 @@
 | 22 | docs: переписать `TODO.md` | 88 строк, 13 задач с чекбоксами | 308 строк: 167 заголовков на 5 чекбоксов + незакрытый блок кода на 200 строк |
 | 23 | chore: `treefmt` | `treefmt.toml`: `nixfmt` вместо `nixpkgs-fmt`, плюс `deadnix`, `statix`, `shfmt`; `.vscode` переведён на `nixfmt` | `treefmt.toml` ссылался на заброшенный `nixpkgs-fmt` и не был подключён к флейку |
 | 24 | feat: `nix fmt`, `nix develop`, `nix flake check` | `formatter`, `devShells`, `checks` (`formatting`, `deadnix`, `statix`) в `flake.nix` | без этого нечем валидировать следующие шаги и не на что навесить CI |
+| 24a | style: `nixfmt` по дереву | 34 файла: разметка по RFC-стилю, `shfmt` для `*.sh`, минус мёртвые аргументы; `statix` временно убран из `checks` | `treefmt.toml` переключён на `nixfmt` на шаге 23, а дерево осталось в стиле `nixpkgs-fmt` — иначе `checks.formatting` красный |
 | 25 | ci: GitHub Actions | lint + `update-flake-lock` | проверки должны идти сами |
 | 26 | refactor: `hosts.nix` + `lib/mkHost` | `hosts.nix`, `lib/default.nix`, `flake.nix` | `username` объявлен, но `users.jenya` — хардкод |
 | 27 | refactor: автоимпорт NixOS | `nixos/{modules,programs,services}/default.nix` | 3 ручных списка импортов → `libx.allModules` |
