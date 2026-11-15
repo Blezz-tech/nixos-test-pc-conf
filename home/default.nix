@@ -1,5 +1,7 @@
 {
   username,
+  hostName,
+  libx,
   ...
 }:
 {
@@ -7,7 +9,8 @@
     ./programs
     ./shell
     ./xdg
-  ];
+  ]
+  ++ libx.optionalModules (./hosts + "/${hostName}");
 
   home = {
     username = "${username}";

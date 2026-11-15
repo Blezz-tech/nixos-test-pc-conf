@@ -1,9 +1,15 @@
 # nixos-conf
 
-Конфигурация NixOS одного хоста — `nixos-jenya`, пользователь `jenya`.
-home-manager подключён модулем, отдельно ставить не нужно.
+Конфигурация NixOS на несколько машин: десктоп `nixos-jenya`, ноутбук `laptop`
+и сервер `server`. Пользователь один — `jenya`.
+
+У машин разное железо (`nixos/hosts/<имя>/hardware-configuration.nix`), разные
+программы (`nixos/hosts/<имя>/` и `nixos/workstation/`) и разный набор
+home-manager: у сервера его нет совсем (`homeManager = false` в `hosts.nix`).
+Как завести новую машину — `docs/notes/hosts.md`.
 
 - [Список работы](./docs/TODO.md)
+- [Хосты: как завести новую машину](./docs/notes/hosts.md)
 - [Как устроена серия рефакторинга](./docs/REFACTORING-STEPS.md)
 
 ## Пересборка
@@ -11,6 +17,8 @@ home-manager подключён модулем, отдельно ставить 
 ```bash
 cd ~/nixos-pc-conf
 sudo nixos-rebuild switch --flake .#nixos-jenya   # или: myBuild
+sudo nixos-rebuild switch --flake .#laptop        # на ноутбуке
+sudo nixos-rebuild switch --flake .#server        # на сервере
 nh os switch                                      # то же через nh
 ```
 
@@ -40,6 +48,9 @@ nix develop       # treefmt, nixfmt, deadnix, statix, shfmt, nixd
 | `hosts.nix` | реестр хостов: имя атрибута = имя конфигурации и `hostName` |
 | `lib/default.nix` | `mkHost` и `libx.allModules` |
 | `nixos/` | системные модули, программы, сервисы, пакеты, оверлеи |
+| `nixos/workstation/` | графика: KDE, вход, портал, питание, графические пакеты |
+| `nixos/hosts/<имя>/` | машинное: `hardware-configuration.nix` и отличия |
+| `home/hosts/<имя>/` | домашние программы конкретной машины |
 | `home/` | home-manager: программы, наборы пакетов (`packs/`), shell, `xdg` |
 | `docs/` | заметки, заготовки, этот рефакторинг |
 
