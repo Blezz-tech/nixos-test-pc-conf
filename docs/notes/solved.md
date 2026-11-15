@@ -53,7 +53,7 @@ pkgs.mkShell {
 
 **Симптом:** пакет `adi1090x-plymouth-themes` тянет 50+ тем на полгигабайта.
 
-**Решение:** override с одной темой (`nixos/hardware-configuration.nix`):
+**Решение:** override с одной темой (`nixos/hosts/<имя>/hardware-configuration.nix`):
 
 ```nix
 loneTheme = pkgs.adi1090x-plymouth-themes.override {
@@ -79,7 +79,7 @@ boot.plymouth = {
 
 **Обход:** не включать `hardware.amdgpu.opencl.enable` и не ставить
 `blender-hip` одновременно. Сейчас `hardware.amdgpu.opencl.enable = true`
-(`nixos/hardware-configuration.nix`), а `blender-hip` не установлен — он в
+(`nixos/hosts/<имя>/hardware-configuration.nix`), а `blender-hip` не установлен — он в
 `docs/notes/packages-wishlist.md`. При возврате blender сначала проверить эту пару.
 
 ## Подпись git-коммитов ключом GPG

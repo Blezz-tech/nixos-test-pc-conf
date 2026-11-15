@@ -29,22 +29,34 @@ let
       in
       lib.concatMap collect (builtins.attrNames entries);
 
-    # mkHost "nixos-jenya" { username = "jenya"; } → nixosConfiguration
+    # mkHost "nixos-jenya" { username = "jenya"; role = "workstation"; }
+    #   → nixosConfiguration
     #
     # name уходит в specialArgs как hostName (его читает
     # nixos/modules/networking.nix) и в users.<name> у home-manager.
+    # role выбирает профиль: nixos/profiles/<role>.nix.
+    # Машинная часть (nixos/hosts/<name>/) подключается, если каталог есть.
     mkHost =
       name:
       {
         system ? "x86_64-linux",
         username,
+        role ? "workstation",
         modules ? [ ],
+        # `...` — потому что запись реестра несёт ещё и enabled: фильтрует его
+        # libx.enabledHosts, самому mkHost он не нужен.
+        ...
       }:
       lib.nixosSystem {
         inherit system;
 
         specialArgs = {
-          inherit inputs libx username;
+          inherit
+            inputs
+            libx
+            username
+            role
+            ;
           hostName = name;
         };
 
@@ -53,7 +65,13 @@ let
           # nvf.nixosModules.default
           # nur.modules.nixos.default
           inputs.proxy-suite.nixosModules.default
+
+          # общая часть и профиль роли
           ../nixos
+          ../nixos/profiles/${role}.nix
+        ]
+        ++ lib.optional (builtins.pathExists (../nixos/hosts + "/${name}")) (../nixos/hosts + "/${name}")
+        ++ [
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -68,6 +86,9 @@ let
         ]
         ++ modules;
       };
+
+    # Только включённые хосты: у остальных ещё нет hardware-configuration.nix.
+    enabledHosts = builtins.filterAttrs (_: host: host.enabled or true);
   };
 in
 libx

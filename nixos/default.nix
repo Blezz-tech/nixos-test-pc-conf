@@ -1,13 +1,11 @@
-{
-  username,
-  ...
-}:
+# Общая часть конфигурации: её получает каждый хост, независимо от роли.
+# Всё, что зависит от роли, лежит в nixos/profiles/, а машинное — в nixos/hosts/.
+{ ... }:
 {
   imports = [
     ./modules
     ./services
     ./programs
-    ./hardware-configuration.nix
     ./overlays
     ./packages.nix
     ./proxy-suite.nix
@@ -17,28 +15,7 @@
 
   system.stateVersion = "26.05";
 
-  # xdg_open should work in steam_run this way… well it’s not
-  # https://github.com/NixOS/nixpkgs/issues/160923
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-  };
-
-  services.desktopManager.plasma6.enable = true;
-
-  services.displayManager = {
-    plasma-login-manager.enable = true;
-    autoLogin = {
-      enable = true;
-      user = username;
-    };
-  };
-
-  powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "performance";
-
   # environment.shellInit = ''
-  #   export XDG_DATA_DIRS=$(echo $XDG_DATA_DIRS | tr ':' '\n' | sort | uniq | tr '\n' ':')
   #   export XDG_DATA_DIRS=$(echo $XDG_DATA_DIRS | tr ':' '\n' | sort | uniq | tr '\n' ':')
   #   export QT_PLUGIN_PATH=$(echo $QT_PLUGIN_PATH | tr ':' '\n' | sort | uniq | tr '\n' ':')
   #   export XDG_CONFIG_DIRS=$(echo $XDG_CONFIG_DIRS | tr ':' '\n' | sort | uniq | tr '\n' ':')
