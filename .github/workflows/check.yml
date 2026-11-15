@@ -36,8 +36,11 @@ jobs:
             echo "проверки прошли"
           else
             echo "::error title=nix flake check::проверка не прошла"
-            # строки про копирование из кэша забивают весь лимит аннотаций
-            grep -v -e '^[[:space:]]*$' -e 'copying path' check.log | tail -40 | while IFS= read -r line; do
+            # Строки про кэш и перечисление выходов забивают весь лимит
+            # аннотаций: без фильтра настоящая ошибка уезжает за tail -40.
+            grep -v -e '^[[:space:]]*$' -e 'copying path' -e 'unpacking ' \
+                   -e '^evaluating ' -e '(build skipped)' check.log \
+              | tail -40 | while IFS= read -r line; do
               printf '::error::%s\n' "${line//'%'/'%25'}"
             done
             exit 1
