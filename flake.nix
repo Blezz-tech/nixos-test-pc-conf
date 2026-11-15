@@ -23,52 +23,36 @@
   outputs =
     {
       nixpkgs,
-      home-manager,
-      proxy-suite,
       # , nixvim
       # , nvf
       # , nur
       ...
     }@inputs:
     let
-      username = "jenya";
+      hosts = import ./hosts.nix;
+      mkHost = (import ./lib { inherit inputs; }).mkHost;
 
-      systems = [ "x86_64-linux" ];
+      inherit (nixpkgs) lib;
+
+      # Системы, для которых есть выходы (formatter/devShells/checks), берём из
+      # hosts.nix — иначе список пришлось бы править в двух местах.
+      systems = lib.unique (lib.mapAttrsToList (_: host: host.system or "x86_64-linux") hosts);
 
       # Инструменты форматирования и линтинга: одно место вместо четырёх.
       tooling = pkgs: [
         pkgs.treefmt
-        pkgs.nixfmt-rfc-style
+        pkgs.nixfmt
         pkgs.deadnix
         pkgs.statix
         pkgs.shfmt
       ];
 
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+      forAllSystems = lib.genAttrs systems;
       pkgsFor = system: nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations."nixos-jenya" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username; };
-        modules = [
-          # nixvim.nixosModules.nixvim
-          # nvf.nixosModules.default
-          # nur.modules.nixos.default
-          proxy-suite.nixosModules.default
-          ./nixos
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.jenya = import ./home;
-              extraSpecialArgs = {
-                inherit inputs username;
-              };
-            };
-          }
-        ];
-      };
+      # Имя конфигурации = имя хоста в hosts.nix.
+      nixosConfigurations = lib.mapAttrs mkHost hosts;
 
       # `nix fmt` — прогоняет treefmt по дереву. PATH нужен, потому что
       # treefmt вызывает внешние команды из treefmt.toml.
@@ -98,7 +82,7 @@
         }
       );
 
-      # Проверки для CI (шаг 25). Сборку конфигурации не запускают — только
+      # Проверки для CI. Сборку конфигурации не запускают — только
       # форматирование и статический анализ, поэтому быстрые.
       checks = forAllSystems (
         system:
