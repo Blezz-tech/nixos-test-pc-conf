@@ -27,6 +27,22 @@
       store нет (`nixos/programs/system.nix`). Даёт `nh clean all` по таймеру:
       раз в неделю, с сохранением последних поколений.
 
+- [ ] **Роли в модулях.** `nixos/modules/` целиком приезжает и на сервер: звук,
+      планшет Wacom, bluetooth, печать. Разложить на `nixos/modules/common/`
+      (всегда) и `nixos/modules/workstation/` (подключает профиль) либо обернуть
+      в `mkIf (role != "server")`. Подробности — `docs/REFACTORING-2.md`.
+
+- [ ] **Роли в home-manager.** `home/programs/packs/` (игры, браузеры, медиа)
+      приедет и на сервер. Нужны `home/profiles/workstation.nix` и
+      `home/profiles/server.nix`; `role` уже есть в `extraSpecialArgs`.
+
+- [ ] **`stateVersion` из `hosts.nix`.** Сейчас `"26.05"` зашит в
+      `nixos/default.nix` и `home/default.nix`; у новых машин он будет свой.
+
+- [ ] **`disko` для новых машин.** Разметка диска декларативно, как в референсе
+      (`nixos/hosts/<имя>/disko.nix` + `disko-install`). Полезнее всего серверу:
+      переустановка становится воспроизводимой.
+
 ## Настройки
 
 - [ ] **Звук по HDMI.** Сейчас вывод переключается на монитор вместе с

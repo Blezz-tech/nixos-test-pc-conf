@@ -19,4 +19,22 @@
     role = "workstation";
     enabled = true;
   };
+
+  # Ноутбук. Больше половины конфигурации рабочей станции подходит как есть,
+  # поэтому role = workstation; различия — в nixos/hosts/laptop/default.nix.
+  # Включить: сгенерировать там hardware-configuration.nix и поставить enabled = true.
+  laptop = {
+    system = "x86_64-linux";
+    username = "jenya";
+    role = "workstation";
+    enabled = false;
+  };
+
+  # Сервер. Без графики и домашних приложений: role = server.
+  server = {
+    system = "x86_64-linux";
+    username = "jenya";
+    role = "server";
+    enabled = false;
+  };
 }

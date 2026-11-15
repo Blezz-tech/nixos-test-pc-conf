@@ -1,9 +1,15 @@
 # nixos-conf
 
-Конфигурация NixOS одного хоста — `nixos-jenya`, пользователь `jenya`.
-home-manager подключён модулем, отдельно ставить не нужно.
+Конфигурация NixOS: десктоп `nixos-jenya`, в реестре рядом заготовки ноутбука и
+сервера. Пользователь один — `jenya`, home-manager подключён модулем, отдельно
+ставить не нужно.
+
+В реестре три машины: десктоп `nixos-jenya` (включён) и заготовки `laptop` и
+`server` (`enabled = false` — железо ещё не сгенерировано).
 
 - [Список работы](./docs/TODO.md)
+- [Хосты: как завести новую машину](./docs/notes/hosts.md)
+- [Рефакторинг под несколько машин](./docs/REFACTORING-2.md)
 - [Как устроена серия рефакторинга](./docs/REFACTORING-STEPS.md)
 
 ## Пересборка
@@ -40,7 +46,7 @@ nix develop       # treefmt, nixfmt, deadnix, statix, shfmt, nixd
 | `hosts.nix` | реестр хостов: имя атрибута = имя конфигурации и `hostName`; поля `role` и `enabled` |
 | `lib/default.nix` | `mkHost`, `enabledHosts`, `libx.allModules` |
 | `nixos/default.nix` | общая часть, её получает каждый хост |
-| `nixos/profiles/` | профили ролей: пока только `workstation` (графика, KDE, вход, питание) |
+| `nixos/profiles/` | профили ролей: `workstation` (графика, KDE, вход, питание) и `server` (ssh, zram) |
 | `nixos/hosts/<имя>/` | машинное: `hardware-configuration.nix` и отличия от профиля |
 | `nixos/` | системные модули, программы, сервисы, пакеты, оверлеи |
 | `home/` | home-manager: программы, наборы пакетов (`packs/`), shell, `xdg` |
