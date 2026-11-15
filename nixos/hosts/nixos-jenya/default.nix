@@ -6,7 +6,5 @@
 { libx, ... }:
 {
   imports =
-    libx.optionalModules ./hardware-configuration.nix
-    ++ [ ../../workstation ]
-    ++ libx.allModules ./.;
+    libx.optionalModules ./hardware-configuration.nix ++ [ ../../workstation ] ++ libx.allModules ./.;
 }

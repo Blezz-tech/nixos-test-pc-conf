@@ -69,27 +69,26 @@ let
           hostName = name;
         };
 
-        modules =
-          [
-            inputs.proxy-suite.nixosModules.default
-            ../nixos
-          ]
-          ++ libx.optionalModules (../nixos/hosts + "/${name}")
-          ++ lib.optionals homeManager [
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${username} = import ../home;
-                extraSpecialArgs = {
-                  inherit inputs libx username;
-                  hostName = name;
-                };
+        modules = [
+          inputs.proxy-suite.nixosModules.default
+          ../nixos
+        ]
+        ++ libx.optionalModules (../nixos/hosts + "/${name}")
+        ++ lib.optionals homeManager [
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${username} = import ../home;
+              extraSpecialArgs = {
+                inherit inputs libx username;
+                hostName = name;
               };
-            }
-          ]
-          ++ modules;
+            };
+          }
+        ]
+        ++ modules;
       };
   };
 in
