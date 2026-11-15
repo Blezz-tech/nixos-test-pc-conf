@@ -1,10 +1,6 @@
-# Оглавление программ NixOS. Здесь должны быть только импорты.
-{ ... }: {
-  imports = [
-    ./chromium.nix
-    ./firefox.nix
-    ./kdeconnect.nix
-    ./steam.nix
-    ./system.nix
-  ];
+# Программы NixOS, которые включаются опциями. Подключение — автоматическое,
+# как и в nixos/modules.
+{ libx, ... }:
+{
+  imports = libx.allModules ./.;
 }

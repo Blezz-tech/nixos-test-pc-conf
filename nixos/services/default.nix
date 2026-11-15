@@ -1,7 +1,5 @@
-# Оглавление сервисов NixOS. Здесь должны быть только импорты.
-{ ... }: {
-  imports = [
-    ./fwupd.nix
-    ./psd.nix
-  ];
+# Сервисы NixOS. Подключение — автоматическое, как и в nixos/modules.
+{ libx, ... }:
+{
+  imports = libx.allModules ./.;
 }

@@ -1,11 +1,6 @@
-# Оглавление shell-окружения (оболочка, терминалы, алиасы, приглашение).
-{ ... }: {
-  imports = [
-    ./alacritty.nix
-    ./aliases.nix
-    ./foot.nix
-    ./session_vars.nix
-    ./starship.nix
-    ./zsh.nix
-  ];
+# Shell-окружение: оболочка, терминалы, алиасы, приглашение.
+# Подключение — автоматическое, как в nixos/modules.
+{ libx, ... }:
+{
+  imports = libx.allModules ./.;
 }
